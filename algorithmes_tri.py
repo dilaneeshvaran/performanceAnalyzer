@@ -51,3 +51,45 @@ def tri_insertion(tableau, cle):
     temps = fin - debut
     
     return tableau, comparaisons, decalages, temps
+
+def tri_fusion(tableau, cle):
+    debut = time.time()
+    comparaisons = [0]  # list to maintain reference in recursive calls
+    
+    def fusionner(gauche, droite, cle, comparaisons):
+        resultat = []
+        i = j = 0
+        
+        while i < len(gauche) and j < len(droite):
+            comparaisons[0] += 1
+            if gauche[i][cle] <= droite[j][cle]:
+                resultat.append(gauche[i])
+                i += 1
+            else:
+                resultat.append(droite[j])
+                j += 1
+        
+        # add remaining elements
+        resultat.extend(gauche[i:])
+        resultat.extend(droite[j:])
+        
+        return resultat
+    
+    def tri_fusion_recursif(tableau, cle, comparaisons):
+        if len(tableau) <= 1:
+            return tableau
+        
+        # divide
+        milieu = len(tableau) // 2
+        gauche = tri_fusion_recursif(tableau[:milieu], cle, comparaisons)
+        droite = tri_fusion_recursif(tableau[milieu:], cle, comparaisons)
+        
+        # fusion
+        return fusionner(gauche, droite, cle, comparaisons)
+    
+    tableau_trie = tri_fusion_recursif(tableau, cle, comparaisons)
+    
+    fin = time.time()
+    temps = fin - debut
+    
+    return tableau_trie, comparaisons[0], temps
