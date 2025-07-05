@@ -93,3 +93,46 @@ def tri_fusion(tableau, cle):
     temps = fin - debut
     
     return tableau_trie, comparaisons[0], temps
+
+def tri_rapide(tableau, cle):
+    debut = time.time()
+    comparaisons = [0]  # list to maintain reference in recursive calls
+    echanges = [0]      # list to maintain reference in recursive calls
+    
+    def partitionner(tableau, bas, haut, cle, comparaisons, echanges):
+        # last element as pivot
+        pivot = tableau[haut][cle]
+        
+        i = bas - 1
+        
+        for j in range(bas, haut):
+            comparaisons[0] += 1
+            # if current element is smaller than or equal to pivot
+            if tableau[j][cle] <= pivot:
+                i += 1
+                tableau[i], tableau[j] = tableau[j], tableau[i]
+                echanges[0] += 1
+        
+        # place pivot at correct position
+        tableau[i + 1], tableau[haut] = tableau[haut], tableau[i + 1]
+        echanges[0] += 1
+        
+        return i + 1
+    
+    def tri_rapide_recursif(tableau, bas, haut, cle, comparaisons, echanges):
+        if bas < haut:
+            # partition the array & get pivot
+            pi = partitionner(tableau, bas, haut, cle, comparaisons, echanges)
+            
+            # recursively sort elements before and after partition
+            tri_rapide_recursif(tableau, bas, pi - 1, cle, comparaisons, echanges)
+            tri_rapide_recursif(tableau, pi + 1, haut, cle, comparaisons, echanges)
+    
+    # call recursive quick sort
+    if len(tableau) > 0:
+        tri_rapide_recursif(tableau, 0, len(tableau) - 1, cle, comparaisons, echanges)
+    
+    fin = time.time()
+    temps = fin - debut
+    
+    return tableau, comparaisons[0], echanges[0], temps

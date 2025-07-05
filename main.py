@@ -1,5 +1,5 @@
 from utilitaires import lire_csv, sauvegarder_resultats
-from algorithmes_tri import tri_selection, tri_insertion, tri_fusion
+from algorithmes_tri import tri_selection, tri_insertion, tri_fusion, tri_rapide
 import copy
 
 def main():
@@ -40,6 +40,11 @@ def main():
             donnees_copie = copy.deepcopy(donnees)
             tableau_trie, nb_comparaisons, temps = tri_fusion(donnees_copie, colonne)
             resultats += f"Tri FUSION par {colonne.upper()} : {temps:.4f}s | {nb_comparaisons} comparaisons\n"
+            
+            # test quick sort
+            donnees_copie = copy.deepcopy(donnees)
+            tableau_trie, nb_comparaisons, nb_echanges, temps = tri_rapide(donnees_copie, colonne)
+            resultats += f"Tri RAPIDE par {colonne.upper()} : {temps:.4f}s | {nb_comparaisons} comparaisons | {nb_echanges} échanges\n"
     
     sauvegarder_resultats(chemin_resultats, resultats)
     print(f"Les résultats ont été sauvegardés dans {chemin_resultats}")
