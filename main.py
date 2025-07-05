@@ -1,5 +1,5 @@
 from utilitaires import lire_csv, sauvegarder_resultats
-from algorithmes_tri import tri_selection
+from algorithmes_tri import tri_selection, tri_insertion
 import copy
 
 def main():
@@ -26,9 +26,15 @@ def main():
         for colonne in colonnes:
             resultats += f"\n=== TRI PAR {colonne.upper()} ({taille} éléments) ===\n"
             
+            # test selection sort
             donnees_copie = copy.deepcopy(donnees)
             tableau_trie, nb_comparaisons, nb_echanges, temps = tri_selection(donnees_copie, colonne)
-            resultats += f"Tri SÉLECTION par {colonne.upper()} : {temps:.3f}s | {nb_comparaisons} comparaisons | {nb_echanges} échanges\n"
+            resultats += f"Tri SÉLECTION par {colonne.upper()} : {temps:.4f}s | {nb_comparaisons} comparaisons | {nb_echanges} échanges\n"
+            
+            # test insertion sort
+            donnees_copie = copy.deepcopy(donnees)
+            tableau_trie, nb_comparaisons, nb_decalages, temps = tri_insertion(donnees_copie, colonne)
+            resultats += f"Tri INSERTION par {colonne.upper()} : {temps:.4f}s | {nb_comparaisons} comparaisons | {nb_decalages} décalages\n"
     
     sauvegarder_resultats(chemin_resultats, resultats)
     print(f"Les résultats ont été sauvegardés dans {chemin_resultats}")

@@ -22,3 +22,32 @@ def tri_selection(tableau, cle):
     temps = fin - debut
     
     return tableau, comparaisons, echanges, temps
+
+def tri_insertion(tableau, cle):
+    debut = time.time()
+    n = len(tableau)
+    comparaisons = 0
+    decalages = 0
+    
+    for i in range(1, n):
+        # element to insert
+        element_courant = tableau[i]
+        
+        # find right position in sorted part
+        j = i - 1
+        while j >= 0:
+            comparaisons += 1
+            if tableau[j][cle] > element_courant[cle]:
+                tableau[j + 1] = tableau[j]
+                decalages += 1
+                j -= 1
+            else:
+                break
+        
+        # insert at correct position
+        tableau[j + 1] = element_courant
+    
+    fin = time.time()
+    temps = fin - debut
+    
+    return tableau, comparaisons, decalages, temps
