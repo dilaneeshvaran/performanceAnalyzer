@@ -1,5 +1,6 @@
 from utilitaires import lire_csv, sauvegarder_resultats
 from algorithmes_tri import tri_selection, tri_insertion, tri_fusion, tri_rapide
+from algorithmes_recherche import recherche_maisons_paris, recherche_appartements_3pieces
 import copy
 
 def main():
@@ -55,6 +56,26 @@ def main():
             ligne_rapide = f"Tri RAPIDE par {colonne.upper()} : {temps:.4f}s | {nb_comparaisons} comparaisons | {nb_echanges} échanges\n"
             resultats += ligne_rapide
             print(ligne_rapide, end='')
+        
+        # run search for sizes 500 and 1000
+        if taille >= 500:
+            search_header = f"\n=== RECHERCHES LINÉAIRES ({taille} éléments) ===\n"
+            resultats += search_header
+            print(search_header, end='')
+            
+            # test A: find all houses in paris
+            donnees_copie = copy.deepcopy(donnees)
+            occurrences, nb_comparaisons, temps = recherche_maisons_paris(donnees_copie)
+            ligne_maisons = f"Recherche linéaire MAISONS PARIS : {temps:.4f}s | {nb_comparaisons} comparaisons | Trouvées: {len(occurrences)}\n"
+            resultats += ligne_maisons
+            print(ligne_maisons, end='')
+            
+            # test D: find all 3 room apartments
+            donnees_copie = copy.deepcopy(donnees)
+            occurrences, nb_comparaisons, temps = recherche_appartements_3pieces(donnees_copie)
+            ligne_apparts = f"Recherche APPART 3P : {temps:.4f}s | {nb_comparaisons} comparaisons | Trouvés: {len(occurrences)}\n"
+            resultats += ligne_apparts
+            print(ligne_apparts, end='')
     
     sauvegarder_resultats(chemin_resultats, resultats)
     print(f"Les résultats ont été sauvegardés dans {chemin_resultats}")
