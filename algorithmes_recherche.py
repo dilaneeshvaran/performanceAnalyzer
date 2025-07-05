@@ -64,3 +64,40 @@ def recherche_binaire_prix_350000(tableau_trie_prix):
     return recherche_binaire(tableau_trie_prix, 350000.0, "prix")
 
 
+def recherche_min_max(tableau, cle):
+    debut = time.time()
+    nb_comparaisons = 0
+    
+    if len(tableau) == 0:
+        fin = time.time()
+        temps_execution = fin - debut
+        return None, None, nb_comparaisons, temps_execution
+    
+    # min and max with first element
+    valeur_min = tableau[0][cle]
+    valeur_max = tableau[0][cle]
+    
+    # start iteration with 2nd array element
+    for i in range(1, len(tableau)):
+        valeur_courante = tableau[i][cle]
+        
+        # min comparaison
+        nb_comparaisons += 1
+        if valeur_courante < valeur_min:
+            valeur_min = valeur_courante
+        
+        # max comparaison
+        nb_comparaisons += 1
+        if valeur_courante > valeur_max:
+            valeur_max = valeur_courante
+    
+    fin = time.time()
+    temps_execution = fin - debut
+    
+    return valeur_min, valeur_max, nb_comparaisons, temps_execution
+
+# test C
+def recherche_min_max_prix_m2(tableau):
+    return recherche_min_max(tableau, "prix_m2")
+
+

@@ -1,6 +1,6 @@
 from utilitaires import lire_csv, sauvegarder_resultats
 from algorithmes_tri import tri_selection, tri_insertion, tri_fusion, tri_rapide
-from algorithmes_recherche import recherche_maisons_paris, recherche_appartements_3pieces, recherche_binaire_prix_350000
+from algorithmes_recherche import recherche_maisons_paris, recherche_appartements_3pieces, recherche_binaire_prix_350000, recherche_min_max_prix_m2
 import copy
 
 def main():
@@ -90,6 +90,17 @@ def main():
             ligne_binaire = f"Recherche binaire PRIX 350000€ : {temps:.4f}s | {nb_comparaisons} comparaisons | Position: {position}\n"
             resultats += ligne_binaire
             print(ligne_binaire, end='')
+            
+            # test C: min/max search for prix_m2
+            minmax_header = f"\n=== RECHERCHE MIN/MAX ({taille} éléments) ===\n"
+            resultats += minmax_header
+            print(minmax_header, end='')
+            
+            donnees_copie = copy.deepcopy(donnees)
+            valeur_min, valeur_max, nb_comparaisons, temps = recherche_min_max_prix_m2(donnees_copie)
+            ligne_minmax = f"Min/Max PRIX_M2 : {temps:.4f}s | {nb_comparaisons} comparaisons | Min: {valeur_min:.2f}€/m² | Max: {valeur_max:.2f}€/m²\n"
+            resultats += ligne_minmax
+            print(ligne_minmax, end='')
     
     sauvegarder_resultats(chemin_resultats, resultats)
     print(f"Les résultats ont été sauvegardés dans {chemin_resultats}")
