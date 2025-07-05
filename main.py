@@ -1,6 +1,6 @@
 from utilitaires import lire_csv, sauvegarder_resultats
 from algorithmes_tri import tri_selection, tri_insertion, tri_fusion, tri_rapide
-from algorithmes_recherche import recherche_maisons_paris, recherche_appartements_3pieces
+from algorithmes_recherche import recherche_maisons_paris, recherche_appartements_3pieces, recherche_binaire_prix_350000
 import copy
 
 def main():
@@ -76,6 +76,15 @@ def main():
             ligne_apparts = f"Recherche APPART 3P : {temps:.4f}s | {nb_comparaisons} comparaisons | Trouvés: {len(occurrences)}\n"
             resultats += ligne_apparts
             print(ligne_apparts, end='')
+            
+            # test B: binary search for exact price 350000 euros
+            donnees_copie = copy.deepcopy(donnees)
+            # sort by price first before binary search
+            tableau_trie_prix, _, _ = tri_fusion(donnees_copie, 'prix')
+            position, nb_comparaisons, temps = recherche_binaire_prix_350000(tableau_trie_prix)
+            ligne_binaire = f"Recherche binaire PRIX 350000€ : {temps:.4f}s | {nb_comparaisons} comparaisons | Position: {position}\n"
+            resultats += ligne_binaire
+            print(ligne_binaire, end='')
     
     sauvegarder_resultats(chemin_resultats, resultats)
     print(f"Les résultats ont été sauvegardés dans {chemin_resultats}")

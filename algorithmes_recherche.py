@@ -15,13 +15,14 @@ def recherche_lineaire(tableau, critere_fn):
     
     return occurrences, nb_comparaisons, temps_execution
 
-# Tests
+# test A
 def recherche_maisons_paris(tableau):
     def critere_maison_paris(element):
         return element["type_local"] == "Maison" and element["commune"] == "PARIS"
     
     return recherche_lineaire(tableau, critere_maison_paris)
 
+# test D
 def recherche_appartements_3pieces(tableau):
     def critere_appart_3p(element):
         try:
@@ -31,3 +32,36 @@ def recherche_appartements_3pieces(tableau):
             return False
     
     return recherche_lineaire(tableau, critere_appart_3p)
+
+def recherche_binaire(tableau, valeur_cible, cle):
+    debut = time.time()
+    nb_comparaisons = 0
+    gauche = 0
+    droite = len(tableau) - 1
+    position_trouvee = -1
+    
+    while gauche <= droite:
+        milieu = (gauche + droite) // 2
+        nb_comparaisons += 1
+        
+        if tableau[milieu][cle] == valeur_cible:
+            position_trouvee = milieu
+            break
+        elif tableau[milieu][cle] < valeur_cible:
+            nb_comparaisons += 1
+            gauche = milieu + 1
+        else:
+            nb_comparaisons += 1
+            droite = milieu - 1
+    
+    fin = time.time()
+    temps_execution = fin - debut
+    
+    return position_trouvee, nb_comparaisons, temps_execution
+
+# test B
+def recherche_binaire_prix_350000(tableau_trie_prix):
+    """
+    Chercher un bien à exactement 350000€ dans le tableau trié par prix
+    """
+    return recherche_binaire(tableau_trie_prix, 350000.0, "prix")
