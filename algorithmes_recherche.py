@@ -61,7 +61,6 @@ def recherche_binaire(tableau, valeur_cible, cle):
 
 # test B
 def recherche_binaire_prix_350000(tableau_trie_prix):
-    """
-    Chercher un bien à exactement 350000€ dans le tableau trié par prix
-    """
     return recherche_binaire(tableau_trie_prix, 350000.0, "prix")
+
+

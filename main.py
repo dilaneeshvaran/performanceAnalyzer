@@ -77,6 +77,11 @@ def main():
             resultats += ligne_apparts
             print(ligne_apparts, end='')
             
+            # binary search section title in results
+            binary_search_header = f"\n=== RECHERCHES BINAIRES ({taille} éléments) ===\n"
+            resultats += binary_search_header
+            print(binary_search_header, end='')
+            
             # test B: binary search for exact price 350000 euros
             donnees_copie = copy.deepcopy(donnees)
             # sort by price first before binary search
