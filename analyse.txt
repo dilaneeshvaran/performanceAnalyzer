@@ -37,7 +37,6 @@ Le tri fusion n'est pas impacté par la distribution des donnéees, c'est pour c
 deux critères.
 Pour les algorithmes plus basiques (insertion, sélection), la différence est moins importante car cela dépend surtout du nombre d'éléments.
 
-
 2. Quel algorithme de tri est le plus rapide sur 1000 biens immobiliers ? 
 Le classement change t il selon le critère (prix/surface) ?
 
@@ -79,7 +78,7 @@ sont mal organisées.
 Donc si on veut garantir des performances constantes, le tri fusion sera le bon choix.
 Le tri rapide peut etre plus rapide parfois mais moins prévisible.
 
-4. Pour trier 10 000 annonces immobilières par prix, quel algorithme recommanderiez-vous 
+4. Pour trier 10 000 annonces immobilières par prix, quel algorithme recommanderiez vous 
 et pourquoi ?
 
 REPONSE :
@@ -137,7 +136,6 @@ Résultats :
 - Pour 1000 éléments : 17 maisons à Paris trouvées (0.0000s, 999 comparaisons)
 
 Observation :
-- Le nombre de maisons trouvées augmente logiquement avec la taille de l'échantillon (on a presque le double en doublant la taille).
 - Le nombre de comparaisons suit exactement la taille des données (500 vs 999), ce qui confirme que la recherche linéaire a une complexité O(n).
 - Pour le temps d'exécution, il est trop petit pour etre mesuré précisément sur ces petits volumes de donnée (affiché à 0.0000s),
 mais sur de plus gros datasets ça augmenterait proportionellement.
@@ -159,7 +157,7 @@ comparaison sur 1000 éléments :
 Explication :
 - La recherche binaire utilise le principe "diviser pour regner", donc à chaque étape elle élimine la moitié des possibilités
 (complexité O(log n)).
-- La recherche linéaire doit examiner les éléments un par un jusqu'à trouver le bon (complexité O(n)).
+- La recherche linéaire doit examiner les éléments un par un jusqu'à trouver le bon cible (complexité O(n)).
 - Mais la recherche binaire marche seulement si les données sont déjà triées,
 Si c'est pas le cas, faut d'abord trier ce qui peut coûter plus du temps.
 
@@ -211,8 +209,7 @@ bien passer à l'échelle sur un vrai site avec plein d'annonces.
 Si jamais on a besoin que ce soit stable à 100%, le tri fusion marcherait aussi très bien.
 
 b) RECHERCHER PAR VILLE :
-j'utiliserais une recherche linéaire avec un filtre sur la ville.  pour récuperer toutes les annonces d'une ville meme si le
-tableau est pas trié par ville.
+j'utiliserais une recherche linéaire avec un filtre sur la ville meme si le tableau est pas trié par ville.
 
 c) FILTRER PAR NOMBRE DE PIÈCES :
 Je choisi la recherche linéaire avec filtre sur le nombre de pièces.

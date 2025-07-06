@@ -99,5 +99,3 @@ def recherche_min_max(tableau, cle):
 # test C
 def recherche_min_max_prix_m2(tableau):
     return recherche_min_max(tableau, "prix_m2")
-
-

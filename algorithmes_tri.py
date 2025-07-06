@@ -128,7 +128,6 @@ def tri_rapide(tableau, cle):
             tri_rapide_recursif(tableau, bas, pi - 1, cle, comparaisons, echanges)
             tri_rapide_recursif(tableau, pi + 1, haut, cle, comparaisons, echanges)
     
-    # call recursive quick sort
     if len(tableau) > 0:
         tri_rapide_recursif(tableau, 0, len(tableau) - 1, cle, comparaisons, echanges)
     
