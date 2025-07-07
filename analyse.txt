@@ -70,7 +70,7 @@ Observations :
 - Le tri fusion donne toujours à peu près les memes résultats (8696 comparaisons pour prix, 8686 pour surface) et
 les temps sont cohérents (0.0088s pour prix, 0.0040s pour surface).
 - Le tri rapide par contre, varie énormément, Pour le prix il fait 12854 comparaisons en 0.0049s, mais pour la surface il monte
-à 21264 comparaisons en 0.0155s. C'est plus du double.
+à 21264 comparaisons en 0.0155s. C'est a peu pres le double.
 - le tri fusion a une complexité garantie O(n log n) et il reste stable peu importe les données.
 - Le tri rapide lui peut etre tres rapide mais parfois il peut devenir très lent (jusqu'à O(n²) dans le pire cas) si les données
 sont mal organisées.
@@ -149,7 +149,7 @@ REPONSE :
 Oui la recherche binaire est beaucoup plus rapide
 
 comparaison sur 1000 éléments :
-- Recherche BINAIRE : 13 comparaisons pour trouver la position 600
+- Recherche BINAIRE : 13 comparaisons pour trouver la valeur a la position 600
 - Recherche LINEAIRE : environ 600 comparaisons en moyenne pour trouver la meme valeur
 
 600 ÷ 13 = 46 fois (environ) moins de comparaisons avec la recherche binaire.

@@ -59,7 +59,7 @@ def tri_fusion(tableau, cle):
     def fusionner(gauche, droite, cle, comparaisons):
         resultat = []
         i = j = 0
-        
+
         while i < len(gauche) and j < len(droite):
             comparaisons[0] += 1
             if gauche[i][cle] <= droite[j][cle]:
@@ -83,7 +83,7 @@ def tri_fusion(tableau, cle):
         milieu = len(tableau) // 2
         gauche = tri_fusion_recursif(tableau[:milieu], cle, comparaisons)
         droite = tri_fusion_recursif(tableau[milieu:], cle, comparaisons)
-        
+
         # fusion
         return fusionner(gauche, droite, cle, comparaisons)
     
@@ -127,7 +127,7 @@ def tri_rapide(tableau, cle):
             # recursively sort elements before and after partition
             tri_rapide_recursif(tableau, bas, pi - 1, cle, comparaisons, echanges)
             tri_rapide_recursif(tableau, pi + 1, haut, cle, comparaisons, echanges)
-    
+            
     if len(tableau) > 0:
         tri_rapide_recursif(tableau, 0, len(tableau) - 1, cle, comparaisons, echanges)
     

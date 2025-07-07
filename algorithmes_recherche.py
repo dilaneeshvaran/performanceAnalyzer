@@ -4,7 +4,7 @@ def recherche_lineaire(tableau, critere_fn):
     debut = time.time()
     occurrences = []
     nb_comparaisons = 0
-    
+
     for element in tableau:
         nb_comparaisons += 1
         if critere_fn(element):
@@ -39,7 +39,7 @@ def recherche_binaire(tableau, valeur_cible, cle):
     gauche = 0
     droite = len(tableau) - 1
     position_trouvee = -1
-    
+
     while gauche <= droite:
         milieu = (gauche + droite) // 2
         nb_comparaisons += 1
